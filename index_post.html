@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>생일 축하해! 🎂</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Noto+Sans+KR:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+
+<body>
+    <div class="rockstar-bg">
+        <div class="star s1">★</div>
+        <div class="star s2">⚡</div>
+        <div class="star s3">★</div>
+        <div class="star s4">⚡</div>
+        <div class="star s5">🎸</div>
+    </div>
+    <div class="canvas-container" id="fireworks-canvas"></div>
+
+    <main class="container">
+        <section class="hero-section">
+            <div class="glass-card main-card rock-border">
+                <div class="badge rock-badge">ROCKSTAR B-DAY</div>
+                <h1 class="glitch-text">나의아기락스타얼먹젤리같은<br>째현아 🎸</h1>
+                <p class="subtitle">생 일 축 하 해</p>
+                <div class="pick-button shake" id="gift-trigger">
+                    <span class="pick-text">선물 궁금하지?</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="message-section hidden" id="message-container">
+            <div class="glass-card message-card">
+                <h2>Dear. 재현 💌</h2>
+                <div class="message-content">
+                    <p>태어나줘서 고마워! 나랑 놀아줘서 고마워!</p>
+                    <p>매일매일 누구보다 치열하게 사는 모습이 너무 멋!있!어!!!</p>
+                    <p>★나랑 앞으로 평생 행복하게 살쟈★</p>
+                </div>
+                <div class="signature">- 베스트프렌드드림 -</div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 Special Birthday Web for You</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,460 @@
+:root {
+    /* 강렬한 락스타 블랙 */
+    --primary: #000000;
+    /* 일렉트릭 퍼플 */
+    --secondary: #1a0033;
+    /* 네온 핑크 (강조) */
+    --accent: #ff00ff;
+    /* 크롬/실버 텍스트 */
+    --text-white: #e0e0e0;
+    /* 네온 글로우 효과 */
+    --neon-shadow: 0 0 10px rgba(255, 0, 255, 0.7), 0 0 20px rgba(255, 0, 255, 0.5);
+    /* 블랙 가죽 느낌의 카드 */
+    --glass-bg: rgba(20, 20, 20, 0.8);
+    --glass-border: rgba(255, 0, 255, 0.4);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Outfit', 'Noto Sans KR', sans-serif;
+    min-height: 100vh;
+    /* 브라운 -> 초록 -> 브라운으로 순환하게 하여 애니메이션 효과를 극대화합니다 */
+    background: linear-gradient(-45deg, var(--primary), var(--secondary), var(--primary), var(--secondary));
+    background-size: 400% 400%;
+    animation: gradientBG 10s ease infinite;
+    /* 15초에서 10초로 조금 더 빠르게 변경 */
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    color: var(--text-white);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+}
+
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.container {
+    max-width: 800px;
+    width: 90%;
+    padding: 4rem 0;
+    z-index: 10;
+}
+
+.hero-section {
+    perspective: 1000px;
+}
+
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 3rem;
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.main-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 35px 55px rgba(0, 0, 0, 0.3);
+}
+
+.badge {
+    display: inline-block;
+    background: linear-gradient(90deg, var(--accent), #ff8a00);
+    padding: 0.5rem 1.2rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+h1 {
+    font-size: 3rem;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    font-weight: 800;
+}
+
+.sparkle-text {
+    background: linear-gradient(to right, #00ffff, #ff00ff, #ff007a, #00ffff);
+    background-size: 200% auto;
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: shine 2s linear infinite;
+    filter: drop-shadow(var(--neon-shadow));
+}
+
+@keyframes shine {
+    to {
+        background-position: 200% center;
+    }
+}
+
+.subtitle {
+    font-size: 1.7rem;
+    color: var(--accent);
+    opacity: 0.8;
+    margin-bottom: 3rem;
+    font-weight: 400;
+}
+
+.gift-box {
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 2rem;
+    border-radius: 20px;
+    display: inline-block;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.gift-box:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: scale(1.1);
+}
+
+.gift-icon {
+    font-size: 4rem;
+    display: block;
+    margin-bottom: 1rem;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-20px);
+    }
+
+    60% {
+        transform: translateY(-10px);
+    }
+}
+
+.gift-hint {
+    font-size: 0.9rem;
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.message-section {
+    margin-top: 3rem;
+    animation: fadeInUp 1s forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+.message-card {
+    text-align: left;
+    padding: 4rem;
+}
+
+.message-card h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: var(--accent);
+}
+
+.message-content p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.signature {
+    margin-top: 3rem;
+    text-align: right;
+    font-style: italic;
+    font-size: 1.2rem;
+    color: var(--accent);
+}
+
+footer {
+    margin-top: auto;
+    padding: 2rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.8rem;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    .glass-card {
+        padding: 2rem;
+    }
+
+    .message-card {
+        padding: 2.5rem;
+    }
+}
+
+/* 락스타 장식 요소 */
+.rockstar-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.star {
+    position: absolute;
+    color: var(--accent);
+    font-size: 2rem;
+    filter: drop-shadow(var(--neon-shadow));
+    animation: rockFloat 3s ease-in-out infinite alternate;
+}
+
+/* 지지직거리는 검은 번개 효과 완화 */
+.star[class*="s2"],
+.star[class*="s4"] {
+    color: #000;
+    font-weight: 900;
+    text-shadow: 1px 1px 0px var(--accent), -1px -1px 0px #0ff;
+    animation: shock 1.5s infinite;
+    /* 속도를 대폭 늦춤 */
+    z-index: 2;
+}
+
+@keyframes shock {
+
+    0%,
+    100% {
+        transform: translate(0) scale(1);
+        opacity: 1;
+    }
+
+    90% {
+        transform: translate(-2px, 2px) scale(1.05);
+        opacity: 0.9;
+    }
+
+    95% {
+        transform: translate(2px, -2px) scale(0.95);
+        opacity: 0.8;
+    }
+}
+
+.s1 {
+    top: 10%;
+    left: 10%;
+    opacity: 0.3;
+}
+
+/* 흐리게 처리 */
+.s2 {
+    top: 15%;
+    right: 20%;
+    font-size: 4rem !important;
+}
+
+/* 번개1 */
+.s3 {
+    bottom: 15%;
+    left: 15%;
+    opacity: 0.3;
+}
+
+.s4 {
+    bottom: 20%;
+    right: 10%;
+    font-size: 5rem !important;
+}
+
+/* 번개2 */
+.s5 {
+    top: 45%;
+    left: 8%;
+    opacity: 0.3;
+}
+
+@keyframes rockFloat {
+    from {
+        transform: translateY(0) rotate(0deg) scale(1);
+    }
+
+    to {
+        transform: translateY(-20px) rotate(20deg) scale(1.2);
+    }
+}
+
+/* 글리치 효과 */
+.glitch-text {
+    position: relative;
+    font-size: 3.5rem !important;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #fff;
+    text-shadow: 0.05em 0 0 rgba(255, 0, 255, 0.75),
+        -0.025em -0.05em 0 rgba(0, 255, 255, 0.75),
+        0.025em 0.05em 0 rgba(255, 255, 0, 0.75);
+    animation: glitch 500ms infinite;
+}
+
+@keyframes glitch {
+    0% {
+        transform: translate(0);
+    }
+
+    20% {
+        transform: translate(-2px, 2px);
+    }
+
+    40% {
+        transform: translate(-2px, -2px);
+    }
+
+    60% {
+        transform: translate(2px, 2px);
+    }
+
+    80% {
+        transform: translate(2px, -2px);
+    }
+
+    100% {
+        transform: translate(0);
+    }
+}
+
+.rock-badge {
+    background: linear-gradient(90deg, #ff00ff, #00ffff) !important;
+    box-shadow: var(--neon-shadow);
+    color: white !important;
+}
+
+.rock-border {
+    border: 3px solid var(--accent) !important;
+    box-shadow: 0 0 30px rgba(255, 0, 255, 0.3), inset 0 0 15px rgba(255, 0, 255, 0.2);
+}
+
+/* 피크 모양 버튼 스타일링 */
+.pick-button {
+    width: 180px;
+    height: 200px;
+    background: var(--accent);
+    margin: 3rem auto 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* 기타 피크 전용 셰이프: 상단 둥글고 하단 뾰족 */
+    border-radius: 50% 50% 20% 20% / 40% 40% 60% 60%;
+    clip-path: polygon(10% 0%, 90% 0%, 100% 30%, 50% 100%, 0% 30%);
+    box-shadow: 0 15px 35px rgba(255, 0, 255, 0.4);
+    transition: all 0.3s ease;
+    padding-bottom: 30px;
+    /* 텍스트를 위쪽 둥근 부분에 맞춤 */
+}
+
+.pick-button:hover {
+    transform: scale(1.05) rotate(5deg);
+    filter: brightness(1.2);
+}
+
+.pick-text {
+    color: #000;
+    font-size: 1.2rem;
+    font-weight: 900;
+    line-height: 1.2;
+    text-align: center;
+    width: 80%;
+    word-break: keep-all;
+}
+
+.pick-button.shake {
+    animation: mildRock 1s ease-in-out infinite;
+}
+
+@keyframes mildRock {
+
+    0%,
+    100% {
+        transform: rotate(0);
+    }
+
+    50% {
+        transform: rotate(5deg);
+    }
+}
+
+.gift-box.shake {
+    animation: headBang 0.2s infinite;
+    /* 더 빠르게 헤드뱅잉 */
+}
+
+@keyframes headBang {
+    0% {
+        transform: rotate(0);
+    }
+
+    25% {
+        transform: rotate(10deg);
+    }
+
+    75% {
+        transform: rotate(-10deg);
+    }
+
+    100% {
+        transform: rotate(0);
+    }
+}
+
+.rock-subtitle {
+    color: #00ffff !important;
+    font-weight: 600 !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
