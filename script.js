@@ -157,10 +157,13 @@ document.addEventListener('DOMContentLoaded', () => {
     retryBtn.addEventListener('click', startGame);
 
     openLetterBtn.addEventListener('click', () => {
-        // 모바일 스크롤 고정 해제
+        // 모바일 스크롤 고정 완전 해제
         document.body.style.position = 'static';
         document.body.style.overflow = 'auto';
+        document.body.style.height = 'auto';
+        document.documentElement.style.position = 'static';
         document.documentElement.style.overflow = 'auto';
+        document.documentElement.style.height = 'auto';
 
         messageContainer.classList.remove('hidden');
         messageContainer.scrollIntoView({ behavior: 'smooth' });
