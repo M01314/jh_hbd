@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>째현아 도망쳐! 🦖🏃‍♂️👧</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Noto+Sans+KR:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+
+<body>
+    <main class="container">
+        <!-- 상상단 메인 제목 (게임 중 노출) -->
+        <h1 id="header-title" class="sweet-title main-game-title hidden">🦕째현이의 집착광공 민선탈출대작전!🏃‍♂️</h1>
+
+        <!-- 상단 미니맵 -->
+        <div class="glass-card game-header-box">
+            <div class="minimap-container">
+                <div class="minimap-line"></div>
+                <div class="map-icon start">🚩</div>
+                <div id="map-girl" class="map-icon girl">
+                    <img src="girl.png" alt="girl" class="minimap-img">
+                </div>
+                <div id="map-dino" class="map-icon dino">🦕</div>
+                <div class="map-icon finish">🏁</div>
+            </div>
+            <div class="distance-info">
+                탈출까지 <span id="dist-remain">2000</span>m 남음!
+            </div>
+        </div>
+
+        <!-- 게임 실시간 화면 -->
+        <div id="game-wrapper">
+            <div id="game-area">
+                <div class="moving-bg"></div>
+
+                <!-- 게임 시작 화면 -->
+                <div id="start-screen" class="ui-screen">
+                    <h1 class="sweet-title" style="font-size: 2.2rem; margin-bottom: 1.5rem;">🦕째현이의 집착광공 민선탈출대작전!🏃‍♂️
+                    </h1>
+                    <p class="description-text">나(<img src="girl.png" class="inline-img">) 한테 잡히면 끝이야!<br>
+                        돌은 <b>위로 점프(↑)</b>, 비행기는 <b>아래로 수그리기(↓)</b>!<br>
+                        (모바일은 화면을 위/아래로 <b>스와이프</b> 하세요!)</p>
+                    <button id="start-btn" class="pick-button">탈출 시작!</button>
+                </div>
+
+                <!-- 게임 오버 화면 -->
+                <div id="over-screen" class="ui-screen hidden">
+                    <h1 class="sweet-title">잡 혔 다 ! <img src="girl.png" class="title-img">💕</h1>
+                    <p>나의 사랑을 피할 수 있을 것 같아?<br>다시 도망쳐봐!</p>
+                    <button id="retry-btn" class="pick-button">다시 도망가기</button>
+                </div>
+
+                <!-- 게임 승리 화면 -->
+                <div id="win-screen" class="ui-screen hidden">
+                    <h1 class="sweet-title">탈출 성공! 🏁✨</h1>
+                    <p>
+                        <br> 휴... 겨우 따돌렸네!<br>이제 안심하고 선물을 확인해봐.
+                    </p>
+                    <button id="open-letter-btn" class="pick-button">선물 확인 💌</button>
+                </div>
+
+                <!-- 게임 요소 (바닥은 CSS로) -->
+                <div id="pursuer-girl" class="char-box">
+                    <img src="girl.png" class="girl-main-img">
+                    <div class="girl-heart" style="position:absolute; top:-20px; font-size:1.5rem;">💕</div>
+                    <div id="girl-bubble" class="speech-bubble">어딜 도망가?</div>
+                </div>
+
+                <div id="player" class="char-box hidden">
+                    <div class="char-main">🦕</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 편지 섹션 -->
+        <section class="message-section hidden" id="message-container">
+            <!-- 가짜 편지 (집착 광공 버전) -->
+            <div id="fake-card" class="message-card fake-style">
+                <div id="girl-final-box" class="final-girl-area">
+                    <img src="girl.png" class="final-girl-img">
+                    <div class="final-quote">"어떻게 내 마음을... 이리도 모르니?"</div>
+                </div>
+                <div class="badge-danger">⚠️ SYSTEM WARNING: HEARTBROKEN MODE ⚠️</div>
+                <h2 class="fake-title">난 널 위해 모든 걸 다 줬어. 이제 내 마음에서 나가 살아!!</h2>
+                <div class="message-content stalker-text">
+                    <p><b>째현아, 나도 이제 한계다. 그냥 내 마음에서 나가 살아라.</b></p>
+                    <p>내 사랑 탓, 내 집착 탓, 환경 탓하지 마라. 나도 충분히 기다려줬다.</p>
+                    <p>나나 내 마음이나 너 하나 바라보기만 해도 바쁘고 힘든 시절이라 사랑을 많이 못 주고 자랐다. 그래서 우리 사귈 때만큼은 우리 사랑은 행복하게 키우자고 약속했다.</p>
+                    <p>너에게 언제나 최고는 아니더라도 최선을 다해주고 싶었다. 내가 먹고 입을 거 참으며 네가 좋아하는 거, 네가 갖고 싶은 거 모두 좋은 조건을 누리게 해주고 싶었다.</p>
+                    <p>네가 방황하거나 철없이 굴 때도 앞에선 웃었지만 뒤에서는 내가 못해줘서 그런가 보다 하며 많이 울었다. 그래도 넌 나보다 나은 삶을 살겠지, 나보단 선택의 자유를 누릴 수
+                        있겠지... 이 생각만 하며 꾹 참으며 세월을 보냈다.</p>
+                    <p><b>그런데 이게 뭐냐? 너 나이가 몇인지 알긴 하느냐?</b></p>
+                    <p>오늘 문득 거울을 보니 너 때문에 늙어버린 내 모습에 눈물이 나더라. <b>그냥... 이제 나가라. 나를 원망하지도 말고 네 힘으로
+                            어디 한번 알아서 살아라.</b></p>
+                    <p><b>나도 이제 지쳤다. 당장 내 심장에서 짐 싸서 나가 살아라!!!!!</b></p>
+                </div>
+                <div class="fake-footer">
+                    <p id="fake-is-real">"이거... 진짜 화난 건가...?"</p>
+                    <button id="show-real-btn" class="pick-button warning">진심 확인하러 가기 </button>
+                </div>
+            </div>
+
+            <!-- 진짜 편지 (감동 버전 - 초기엔 숨김) -->
+            <div id="real-card" class="message-card real-card-style hidden">
+                <div class="final-girl-area">
+                    <img src="girl.png" class="final-girl-img">
+                    <div class="final-quote">"거짓말이지롱! 생일 축하해! 💕"</div>
+                </div>
+                <div class="badge-sweet">HAPPY BIRTHDAY MY LITTLE CUTE BRACHIOSAURUS</div>
+                <h2 style="font-size: 2rem; color: var(--primary); margin-bottom: 2rem;">나의아기락스타<br>베이비째현아</h2>
+                <div class="message-content real-text-center">
+                    <p>태어나줘서 고마워! 나랑 놀아줘서 고마워!</p>
+                    <p>나 만나줘서 고마워!</p>
+                    <p>늘 생각하는데</p>
+                    <p>매일매일 누구보다 치열하게 사는 모습이</p>
+                    <p><b>너무 멋!있!어!!!</b></p>
+                    <p>내가 앞으로 더 잘해줄게! 더 많이 사랑해줄게!</p>
+                    <p><b>★나랑 앞으로 평생 행복하게 살쟈★</b></p>
+                </div>
+                <div class="signature">- 평생기약베스트프렌드드림 -</div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 Dino Escape - To. Jaehyun</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
