@@ -377,15 +377,16 @@ body {
     }
 
     #player {
-        left: 120px;
-        /* 더 우측으로 이동 */
-        bottom: 21% !important;
+        left: 180px;
+        /* 우측으로 더 이동 */
+        bottom: 25% !important;
+        /* 지면에 더 밀착 */
     }
 
     #pursuer-girl {
-        left: 55px;
-        /* 더 우측으로 이동 (벽에서 떼어냄) */
-        bottom: 21% !important;
+        left: 100px;
+        /* 우측으로 더 이동 (벽에서 멀리) */
+        bottom: 25% !important;
     }
 
     .girl-main-img {
@@ -395,8 +396,8 @@ body {
     /* 바위(장애물) 바닥에 붙이기 */
     .char-box,
     .obstacle {
-        bottom: 21% !important;
-        /* 발바닥과 바위 높이 통일 */
+        bottom: 25% !important;
+        /* 모든 요소 높이 통일 */
     }
 
     /* 말풍선 최적화 */
@@ -404,8 +405,9 @@ body {
         top: -45px;
         padding: 5px 8px;
         font-size: 0.65rem;
-        left: 60%;
-        /* 말풍선도 살짝 우측으로 치우치게 하여 가독성 확보 */
+        left: 50%;
+        /* 중앙으로 복구 */
+        transform: translateX(-50%);
     }
 
     .stone-main {
