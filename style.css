@@ -520,8 +520,8 @@ body {
     }
 
     #pursuer-girl {
-        left: 21.43%;
-        /* 1.5/7 위치 */
+        left: 15.71%;
+        /* 1.1/7 위치 */
         bottom: 15% !important;
     }
 
@@ -581,8 +581,8 @@ body {
 
     .plane-main {
         font-size: 2.0rem;
-        /* 더 축소 */
-        margin-bottom: 20px;
+        margin-bottom: 40px;
+        /* 고도 상향 */
     }
 
     /* UI 화면 텍스트 크기 */
