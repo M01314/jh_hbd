@@ -474,8 +474,19 @@ body {
 }
 
 @media (max-width: 600px) {
+
+    html,
     body {
-        padding: 1rem 0;
+        overflow: hidden;
+        height: 100%;
+        position: fixed;
+        /* 화면 스크롤 완전 고정 */
+        width: 100%;
+    }
+
+    body {
+        padding: 0;
+        /* 여백 제거로 꽉 차게 */
     }
 
     .container {
@@ -526,11 +537,23 @@ body {
         z-index: 50;
     }
 
-    /* 말풍선 가독성 보장 */
+    /* 말풍선 및 하트 크기 축소 */
     .speech-bubble {
         z-index: 200;
         left: 50%;
         transform: translateX(-50%);
+        padding: 4px 8px;
+        /* 패딩 축소 */
+        font-size: 0.6rem;
+        /* 폰트 축소 */
+        top: -40px;
+        /* 위치 조정 */
+    }
+
+    .girl-heart {
+        font-size: 1.1rem !important;
+        /* 하트 크기 축소 */
+        top: -15px !important;
     }
 
     /* 미니맵 최적화 */
