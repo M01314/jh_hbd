@@ -31,9 +31,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 기기별 속도 설정
     const isMobileSize = window.innerWidth <= 600;
-    const gameSpeed = isMobileSize ? 8.5 : 11.5; // 모바일 보통, 데스크탑 빠르게
-    const obstacleInterval = isMobileSize ? 1700 : 1300; // 생성 간격 단축
-    const distSpeed = isMobileSize ? 3.8 : 5.2; // 진행 속도 상향
+    const gameSpeed = isMobileSize ? 6 : 9; // 모바일은 더 천천히 (기존 8/11 기준 조절)
+    const obstacleInterval = isMobileSize ? 2200 : 1600; // 모바일은 더 듬성듬성
+    const distSpeed = isMobileSize ? 2.5 : 4.0; // 모바일 진행 속도
 
     // Game State
     let gameActive = false;

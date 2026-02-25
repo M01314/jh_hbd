@@ -24,6 +24,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    /* 전체 세로 중앙 정렬 */
     overflow-x: hidden;
     padding: 2rem 0;
 }
@@ -44,14 +45,6 @@ body {
     display: flex;
     flex-direction: column;
     gap: 0.8rem;
-}
-
-.glass-card {
-    background: var(--glass-bg);
-    backdrop-filter: blur(10px);
-    border-radius: 30px;
-    border: 1px solid var(--glass-border);
-    box-shadow: 0 10px 30px rgba(93, 64, 55, 0.05);
 }
 
 .minimap-container {
@@ -78,6 +71,8 @@ body {
     transform: translate(-50%, -50%) scaleX(-1);
 }
 
+/* 미니맵 공룡도 오른쪽 확인 */
+
 .distance-info {
     text-align: right;
     font-size: 0.9rem;
@@ -101,8 +96,8 @@ body {
     width: 100%;
     height: 100%;
     background: linear-gradient(to bottom, #e3f2fd 0%, #fff 70%, #dcedc8 70%, #a8d5ba 100%);
+    /* 배경 흐르는 효과 */
     background-size: 200% 100%;
-    touch-action: none;
 }
 
 .moving-bg {
@@ -124,6 +119,7 @@ body {
     }
 }
 
+/* 캐릭터 위치 조정 및 고도화 */
 .char-box {
     position: absolute;
     bottom: 27%;
@@ -136,17 +132,29 @@ body {
 
 #player {
     left: 180px;
+    /* 공룡은 중앙에서 살짝 왼쪽 */
     transform: scaleX(-1);
+    /* 오른쪽 보기 */
     transform-origin: bottom;
+    /* 숙일 때 바닥 기준 */
+}
+
+#player.ducking {
+    filter: brightness(0.9);
+    /* 숙였을 때 약간 어둡게 처리하여 피드백 강화 */
 }
 
 .char-main {
     font-size: 4.5rem;
+    /* 공룡 크기 키움 */
     filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.1));
+    transition: all 0.1s;
 }
 
+/* 소녀 위치 - 항상 화면에 보임 */
 #pursuer-girl {
     left: 40px;
+    /* 화면 좌측 끝 */
     z-index: 45;
 }
 
@@ -167,6 +175,7 @@ body {
     }
 }
 
+/* 장애물 */
 .obstacle {
     position: absolute;
     bottom: 30%;
@@ -180,6 +189,7 @@ body {
 .plane-main {
     font-size: 3.5rem;
     margin-bottom: 35px;
+    /* 더 낮게 비행하여 서 있으면 맞게 함 */
     animation: planeHover 1s infinite alternate;
 }
 
@@ -193,18 +203,14 @@ body {
     }
 }
 
-.sweet-title {
-    font-family: 'Outfit', sans-serif;
-    font-weight: 800;
-    color: var(--primary);
-}
-
 .main-game-title {
     font-size: 2.2rem;
     margin-bottom: 0.5rem;
     text-align: center;
+    word-break: keep-all;
 }
 
+/* UI 및 편지 섹션 */
 .ui-screen {
     position: absolute;
     top: 0;
@@ -220,6 +226,13 @@ body {
     z-index: 100;
     text-align: center;
     padding: 2rem;
+}
+
+.description-text {
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+    color: var(--text-main);
 }
 
 .pick-button {
@@ -240,6 +253,38 @@ body {
     box-shadow: 0 4px 0 #e195a1;
 }
 
+.message-card {
+    background: white;
+    padding: 3rem;
+    border-radius: 40px;
+    border: 10px solid var(--accent);
+    box-shadow: 0 20px 0 var(--secondary);
+}
+
+/* 교체된 이미지 스타일 */
+.minimap-img {
+    width: 24px;
+    height: auto;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.inline-img {
+    width: 24px;
+    height: auto;
+    vertical-align: middle;
+    margin: 0 2px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.title-img {
+    width: 42px;
+    height: auto;
+    vertical-align: middle;
+    margin: 0 5px;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+}
+
+/* 말풍선 스타일 */
 .speech-bubble {
     position: absolute;
     top: -50px;
@@ -254,6 +299,7 @@ body {
     white-space: nowrap;
     opacity: 0;
     transition: opacity 0.3s;
+    z-index: 100;
 }
 
 .speech-bubble::after {
@@ -267,33 +313,39 @@ body {
     border-right: 8px solid transparent;
 }
 
-.message-section {
-    width: 100%;
-}
-
+/* 편지 카드 스타일 보강 */
 .message-card {
     background: white;
     padding: 3rem;
     border-radius: 40px;
     border: 10px solid var(--accent);
     box-shadow: 0 20px 0 var(--secondary);
-    text-align: center;
+    transition: all 0.5s ease;
 }
 
-.fake-style {
+/* 가짜 편지 (집착 광공) 스타일 */
+.message-card.fake-style {
     border-color: #ff4d4d;
     box-shadow: 0 20px 0 #b30000;
+    background: #fffafa;
 }
 
 .fake-title {
     color: #cc0000;
-    margin-bottom: 2rem;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    animation: shake 0.5s infinite;
 }
 
 .stalker-text {
     text-align: left;
-    line-height: 1.8;
     color: #444;
+    line-height: 1.8;
+    background: rgba(255, 77, 77, 0.05);
+    padding: 20px;
+    border-radius: 20px;
+    border-left: 5px solid #ff4d4d;
 }
 
 .badge-danger {
@@ -301,47 +353,119 @@ body {
     color: white;
     padding: 5px 15px;
     border-radius: 20px;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
+    font-weight: 800;
     margin-bottom: 1rem;
     display: inline-block;
 }
 
-.badge-sweet {
-    background: var(--secondary);
-    color: var(--primary);
-    padding: 5px 15px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    margin-bottom: 1rem;
-    display: inline-block;
+.fake-footer {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px dashed #ff4d4d;
 }
 
+#fake-is-real {
+    font-style: italic;
+    color: #888;
+    margin-bottom: 1rem;
+}
+
+.pick-button.warning {
+    background: #ffc107;
+    box-shadow: 0 8px 0 #d39e00;
+}
+
+@keyframes shake {
+    0% {
+        transform: translate(1px, 1px) rotate(0deg);
+    }
+
+    10% {
+        transform: translate(-1px, -2px) rotate(-1deg);
+    }
+
+    20% {
+        transform: translate(-3px, 0px) rotate(1deg);
+    }
+
+    30% {
+        transform: translate(3px, 2px) rotate(0deg);
+    }
+
+    40% {
+        transform: translate(1px, -1px) rotate(1deg);
+    }
+
+    50% {
+        transform: translate(-1px, 2px) rotate(-1deg);
+    }
+
+    60% {
+        transform: translate(-3px, 1px) rotate(0deg);
+    }
+
+    70% {
+        transform: translate(3px, 1px) rotate(-1deg);
+    }
+
+    80% {
+        transform: translate(-1px, -1px) rotate(1deg);
+    }
+
+    90% {
+        transform: translate(1px, 2px) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(1px, -2px) rotate(-1deg);
+    }
+}
+
+/* 엔딩 소녀 영역 */
 .final-girl-area {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-bottom: 2rem;
+    animation: bounce 2s infinite;
 }
 
 .final-girl-img {
     width: 100px;
     height: auto;
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.2));
 }
 
 .final-quote {
-    font-weight: 700;
-    color: var(--primary);
     margin-top: 10px;
+    font-family: 'Noto Sans KR';
+    font-weight: 800;
+    color: var(--primary);
+    font-size: 1.2rem;
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
 }
 
 .real-text-center {
+    text-align: center;
     line-height: 2;
-    margin-top: 2rem;
-    font-size: 1.1rem;
+    margin-top: 1rem;
 }
 
-.signature {
-    margin-top: 3rem;
+.real-card-style .signature {
+    text-align: center;
+    margin-top: 2rem;
     font-weight: 800;
 }
 
@@ -349,7 +473,6 @@ body {
     display: none !important;
 }
 
-/* --- Mobile Optimizations --- */
 @media (max-width: 600px) {
     body {
         padding: 1rem 0;
@@ -357,6 +480,7 @@ body {
 
     .container {
         width: 100%;
+        padding: 0 10px;
         gap: 1rem;
     }
 
@@ -365,6 +489,7 @@ body {
         padding: 0 10px;
     }
 
+    /* 게임 영역 축소 */
     #game-wrapper {
         height: 300px;
         border-width: 3px;
@@ -373,7 +498,7 @@ body {
 
     /* 캐릭터 크기 및 위치 조정 */
     .char-main {
-        font-size: 2.5rem;
+        font-size: 3.5rem;
     }
 
     #player {
@@ -387,34 +512,51 @@ body {
     }
 
     .girl-main-img {
-        width: 32px;
+        width: 40px;
     }
 
-    /* 바위(장애물) 바닥에 붙이기 */
+    /* 장애물 높이와 발바닥 높이 일치 (떠 보이지 않게) */
     .char-box,
     .obstacle {
         bottom: 15% !important;
+        z-index: 50;
     }
 
-    /* 말풍선 최적화 */
+    /* 말풍선 가독성 보장 */
     .speech-bubble {
-        top: -45px;
-        padding: 5px 8px;
-        font-size: 0.65rem;
+        z-index: 200;
         left: 50%;
         transform: translateX(-50%);
-        z-index: 200;
     }
 
+    /* 미니맵 최적화 */
+    .game-header-box {
+        padding: 1rem;
+    }
+
+    .minimap-container {
+        height: 30px;
+    }
+
+    .map-icon {
+        font-size: 1.2rem;
+    }
+
+    .minimap-img {
+        width: 20px;
+    }
+
+    /* 장애물 크기 조정 */
     .stone-main {
-        font-size: 1.8rem;
+        font-size: 2.2rem;
     }
 
     .plane-main {
-        font-size: 2.2rem;
-        margin-bottom: 20px;
+        font-size: 2.8rem;
+        margin-bottom: 25px;
     }
 
+    /* UI 화면 텍스트 크기 */
     .ui-screen h1 {
         font-size: 1.5rem !important;
     }
@@ -428,6 +570,7 @@ body {
         font-size: 1rem;
     }
 
+    /* 편지 섹션 최적화 */
     .message-card {
         padding: 1.5rem;
         border-width: 6px;
@@ -438,11 +581,15 @@ body {
     }
 
     .message-content {
-        font-size: 0.85rem;
+        font-size: 0.9rem;
         padding: 10px;
     }
 
     .final-girl-img {
         width: 80px;
+    }
+
+    .final-quote {
+        font-size: 1rem;
     }
 }
