@@ -24,6 +24,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const realCard = document.getElementById('real-card');
     const showRealBtn = document.getElementById('show-real-btn');
 
+    // --- Audio Elements (추가) ---
+    const bgm = document.getElementById('bgm');
+    const sfxJump = document.getElementById('sfx-jump');
+    const sfxWin = document.getElementById('sfx-win');
+    const sfxLose = document.getElementById('sfx-lose');
+
     // Game Constants
     const gravity = 0.65;
     const jumpPower = -14;
@@ -74,6 +80,23 @@ document.addEventListener('DOMContentLoaded', () => {
         "넌 도망칠 때가 젤 멋져"
     ];
 
+    // --- Audio Helpers (추가) ---
+    function playSfx(audioEl) {
+        if (!audioEl) return;
+        try {
+            audioEl.currentTime = 0;
+            audioEl.play();
+        } catch (e) {}
+    }
+
+    function stopBgm(bgmEl) {
+        if (!bgmEl) return;
+        try {
+            bgmEl.pause();
+            bgmEl.currentTime = 0;
+        } catch (e) {}
+    }
+
     // --- 이벤트 및 조작 ---
 
     const handleJump = () => {
@@ -81,6 +104,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!isJumping) {
             pvy = jumpPower;
             isJumping = true;
+
+            // (3번) 점프 시 효과음
+            playSfx(sfxJump);
         }
     };
 
@@ -184,32 +210,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- 게임 루프 ---
-	function playSfx(audioEl) {
-	  if (!audioEl) return;
-	  try {
-	    audioEl.currentTime = 0;
-	    audioEl.play();
-	  } catch (e) {
-	    // autoplay 정책/사용자 제스처 문제 등으로 실패할 수 있음
-	  }
-	}
 
-	function startBgm(bgmEl) {
-	  if (!bgmEl) return;
-	  try {
-	    bgmEl.volume = 0.6;     // 필요 시 조절
-	    bgmEl.currentTime = 0;
-	    bgmEl.play();
-	  } catch (e) {}
-	}
-
-	function stopBgm(bgmEl) {
-	  if (!bgmEl) return;
-	  try {
-	    bgmEl.pause();
-	    bgmEl.currentTime = 0;
-	  } catch (e) {}
-	}
     function startGame() {
         gameActive = true;
         distance = 0;
@@ -380,6 +381,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function gameOver() {
+        // (4번) 실패: BGM 정지 + 실패 SFX
+        stopBgm(bgm);
+        playSfx(sfxLose);
+
         gameActive = false;
         player.classList.add('hidden');
         overScreen.classList.remove('hidden');
@@ -388,6 +393,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function winGame() {
+        // (4번) 성공: BGM 정지 + 성공 SFX
+        stopBgm(bgm);
+        playSfx(sfxWin);
+
         gameActive = false;
         player.classList.add('hidden');
         winScreen.classList.remove('hidden');
@@ -400,4 +409,3 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
-
