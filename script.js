@@ -184,7 +184,32 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- 게임 루프 ---
+	function playSfx(audioEl) {
+	  if (!audioEl) return;
+	  try {
+	    audioEl.currentTime = 0;
+	    audioEl.play();
+	  } catch (e) {
+	    // autoplay 정책/사용자 제스처 문제 등으로 실패할 수 있음
+	  }
+	}
 
+	function startBgm(bgmEl) {
+	  if (!bgmEl) return;
+	  try {
+	    bgmEl.volume = 0.6;     // 필요 시 조절
+	    bgmEl.currentTime = 0;
+	    bgmEl.play();
+	  } catch (e) {}
+	}
+
+	function stopBgm(bgmEl) {
+	  if (!bgmEl) return;
+	  try {
+	    bgmEl.pause();
+	    bgmEl.currentTime = 0;
+	  } catch (e) {}
+	}
     function startGame() {
         gameActive = true;
         distance = 0;
@@ -375,3 +400,4 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
